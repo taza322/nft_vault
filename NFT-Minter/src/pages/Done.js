@@ -24,7 +24,7 @@ export default function Done() {
         }}
       > */}
       <Typography>NFT 민팅이 완료 되었습니다.</Typography>
-      <Typography>잠시 후 에이락 월렛에서 확인해주세요.</Typography>
+      <Typography>잠시 후 Klip에서 확인해주세요.</Typography>
       {/* </Box> */}
       <Box
         sx={{
