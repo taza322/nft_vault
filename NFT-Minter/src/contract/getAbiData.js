@@ -1,5 +1,5 @@
-import ABI from "./MyMetaGallery.json";
+import ABI from "./MilalPOC.json";
 
-export const MyMetaGalleryCA = ABI.address;
+export const MilalPOCCA = ABI.address;
 
-export const MyMetaGalleryABI = ABI.abi;
+export const MilalPOCABI = ABI.abi;

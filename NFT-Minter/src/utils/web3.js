@@ -7,7 +7,7 @@ import Web3 from "web3";
 import CryptoJS from "crypto-js";
 
 // Contract data
-import { MyMetaGalleryCA, MyMetaGalleryABI } from "../contract/getAbiData.js";
+import { MilalPOCCA, MilalPOCABI } from "../contract/getAbiData.js";
 
 // web3 provider
 export const web3 = new Web3(REACT_APP_RPC_URL);
@@ -74,22 +74,16 @@ export const SendTransactionNoValue = async (data, to, estimateGas) => {
 };
 
 // Mint
-const MyMetaGalleryContract = new web3.eth.Contract(
-  MyMetaGalleryABI,
-  MyMetaGalleryCA
-).methods;
+const MilalPOCContract = new web3.eth.Contract(MilalPOCABI, MilalPOCCA).methods;
 export const minting = async (tokenURI, to) => {
-  const mint = MyMetaGalleryContract.mintNFT(to, tokenURI).encodeABI();
+  const mint = MilalPOCContract.mintNFT(to, tokenURI).encodeABI();
 
-  const estimate = await MyMetaGalleryContract.mintNFT(
-    to,
-    tokenURI
-  ).estimateGas({
+  const estimate = await MilalPOCContract.mintNFT(to, tokenURI).estimateGas({
     from: REACT_APP_ADDRESS,
   });
 
   console.log("예상 실행 가스비 견적 : ", estimate);
-  const result = await SendTransactionNoValue(mint, MyMetaGalleryCA, estimate);
+  const result = await SendTransactionNoValue(mint, MilalPOCCA, estimate);
   console.log("트랜잭션 해시 : ", result.hash);
   return result;
 };
@@ -113,13 +107,13 @@ export const sendSignTx = async (signTx) =>
 
 // 민팅이 완료되었으면, 다시 민팅 의뢰자(to)에세 전송(transfer)
 export const transfer = async (to, tokenId) => {
-  const safeTransferFrom = await MyMetaGalleryContract.safeTransferFrom(
+  const safeTransferFrom = await MilalPOCContract.safeTransferFrom(
     REACT_APP_ADDRESS,
     to,
     Number(tokenId)
   ).encodeABI();
 
-  const estimate = await MyMetaGalleryContract.safeTransferFrom(
+  const estimate = await MilalPOCContract.safeTransferFrom(
     REACT_APP_ADDRESS,
     to,
     Number(tokenId)
@@ -134,7 +128,7 @@ export const transfer = async (to, tokenId) => {
 
   const result = await SendTransactionNoValue(
     safeTransferFrom,
-    MyMetaGalleryCA,
+    MilalPOCCA,
     estimate
   );
 

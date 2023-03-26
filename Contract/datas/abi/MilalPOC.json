@@ -112,8 +112,7 @@
       "name": "balanceOf",
       "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -122,8 +121,7 @@
       "name": "getApproved",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -133,24 +131,21 @@
       "name": "isApprovedForAll",
       "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
       "name": "name",
       "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
       "name": "owner",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -159,8 +154,7 @@
       "name": "ownerOf",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -209,16 +203,14 @@
       "name": "supportsInterface",
       "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
       "name": "symbol",
       "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -227,8 +219,7 @@
       "name": "tokenURI",
       "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -261,5 +252,5 @@
       "type": "function"
     }
   ],
-  "address": "0x27fCC541F8eAf2ebA31E4dB5a371448ed4d2EC3d"
+  "address": "0x401094f9C25c650368B50B48Ee5e756eC6069f01"
 }
