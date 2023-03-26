@@ -58,7 +58,7 @@ export default function MintButton() {
         });
         sendSignTx(result.tx);
         setGuide({
-          message: "전송이 완료되었습니다. 에이락 월렛에서 확인해주세요.",
+          message: "전송이 완료되었습니다. Klip에서 확인해주세요.",
         });
         setSuccess({ isSuccess: true });
         navigate("/done");

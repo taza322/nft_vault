@@ -21,7 +21,7 @@ export default function Snackbar() {
       if (!security.isSecurityCode) {
         enqueueSnackbar("안내받은 코드를 넣어주세요.");
         if (message === "Main") {
-          enqueueSnackbar("에이락 월렛에서 복사한 주소를 붙여넣기 해주세요.");
+          enqueueSnackbar("Klip에서 복사한 주소를 붙여넣기 해주세요.");
         }
       } else {
         if (message === "Main") {
