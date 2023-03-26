@@ -3,3 +3,8 @@
 /NFT-Minter/package-lock.json
 /NFT-Minter/.env
 /NFT-Minter/src/utils/test.js
+
+# Contract
+/Contract/node_modules
+/Contract/package-lock.json
+/Contract/.env
