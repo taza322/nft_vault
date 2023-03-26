@@ -57,6 +57,8 @@ export default function Header() {
       setWhichNEt({ network: "Ethereum" });
     } else if (network.indexOf("matic") !== -1 && network[8] === "r") {
       setWhichNEt({ network: "Polygon" });
+    } else if (network.indexOf("klaytn") !== -1) {
+      setWhichNEt({ network: "Klaytn" });
     }
   }, [setWhichNEt]);
 
@@ -69,7 +71,7 @@ export default function Header() {
       <Box onClick={reset} sx={{ display: "flex", cursor: "pointer" }}>
         <img src={headerMMG} width="auto" height="40px" alt="logo" />
         <Typography variant="h4" ml="10px">
-          Milal Character {whichNet.network}
+          Milal {whichNet.network}
         </Typography>
       </Box>
     </Box>
