@@ -12,10 +12,10 @@ import { addressState } from "../recoil/addressForMint.js";
 import { securityState } from "../recoil/security.js";
 
 // web3
-import { checkAddress } from "../utils/web3.js";
+// import { checkAddress } from "../utils/web3.js";
 
 // caver
-import { test } from "../utils/caver.js";
+import { test, checkAddress } from "../utils/caver.js";
 
 export default function Main() {
   const setLoading = useSetRecoilState(loadingState);

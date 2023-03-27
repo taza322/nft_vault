@@ -5,6 +5,11 @@ import Caver from "caver-js";
 const caver = new Caver(REACT_APP_RPC_URL);
 
 export const test = () => {
-  const account = caver.utils.toChecksumAddress(REACT_APP_ADDRESS);
+  const account = caver.utils.isAddress(REACT_APP_ADDRESS);
   console.log(account);
+};
+
+// Address 확인
+export const checkAddress = (address) => {
+  return caver.utils.isAddress(address);
 };
