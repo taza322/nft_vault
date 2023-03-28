@@ -15,7 +15,7 @@ import { securityState } from "../recoil/security.js";
 // import { checkAddress } from "../utils/web3.js";
 
 // caver
-import { test, checkAddress } from "../utils/caver.js";
+import { checkAddress } from "../utils/caver.js";
 
 export default function Main() {
   const setLoading = useSetRecoilState(loadingState);
@@ -173,13 +173,6 @@ export default function Main() {
           </Button>
         </Box>
       ) : null}
-      <Button
-        sx={{ width: "40%", mt: "5%", margin: "0 auto" }}
-        variant="contained"
-        onClick={test}
-      >
-        테스트
-      </Button>
     </Box>
   );
 }

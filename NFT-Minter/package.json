@@ -59,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "eslint": "^8.31.0"
   }
 }

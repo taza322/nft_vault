@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 // MUI css
 import { Box, Button } from "@mui/material";
 
-// component
+// api
 import { jsonToPinata } from "../APIs/pinataCall.js";
 
 // recoil
@@ -17,7 +17,10 @@ import { guideState } from "../recoil/guide.js";
 import { successState } from "../recoil/success.js";
 
 // contract Mint
-import { minting, sendSignTx } from "../utils/web3.js";
+// web3
+// import { minting, sendSignTx } from "../utils/web3.js";
+// caver
+import { minting, sendSignTx } from "../utils/caver.js";
 
 export default function MintButton() {
   const nftMetaData = useRecoilValue(nftMetaState);
