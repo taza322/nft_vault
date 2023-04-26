@@ -1,4 +1,4 @@
-import ABI from "./MilalPOC.json";
+import ABI from "./Milal.json";
 
 export const MilalPOCCA = ABI.address;
 

@@ -1,12 +1,13 @@
 // contract
-const MilalPOC = artifacts.require("MilalPOC");
+// const MilalPOC = artifacts.require("MilalPOC");
+const Milal = artifacts.require("Milal");
 
 // makeAbi
 const { makeAbi } = require("../utils/makeABI");
 
 module.exports = async function (deployer) {
-  await deployer.deploy(MilalPOC);
-  const MilalPOCContract = await MilalPOC.deployed();
+  await deployer.deploy(Milal);
+  const MilalContract = await Milal.deployed();
 
-  makeAbi("MilalPOC", MilalPOCContract.address);
+  makeAbi("Milal", MilalContract.address);
 };

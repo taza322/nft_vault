@@ -21,6 +21,13 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true,
     },
+    klaytn: {
+      provider: () => new HDWalletProvider(privateKey, RPC_URL),
+      network_id: 8217,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true,
+    },
   },
 
   mocha: {},

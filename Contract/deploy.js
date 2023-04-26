@@ -2,8 +2,11 @@ const shell = require("shelljs");
 
 // 컴파일 명령어
 const compileString = "truffle compile";
-// 배포 명령어
-const deployString = "truffle deploy --network klaytnTest --compile-none";
+
+// 배포 명령어(Klaytn_Test)
+// const deployString = "truffle deploy --network klaytnTest --compile-none";
+// 배포 명령어(Klaytn)
+const deployString = "truffle deploy --network klaytn --compile-none";
 
 const init = async () => {
   console.log("-------------- 컴파일을 시작합니다. --------------");
