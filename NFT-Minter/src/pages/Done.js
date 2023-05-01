@@ -6,7 +6,17 @@ import kilpLogo from "../img/klip_Logo.png";
 // MUI css
 import { Box, Typography } from "@mui/material";
 
+// recoil
+import { useSetRecoilState } from "recoil";
+import { guideState } from "../recoil/guide.js";
+
 export default function Done() {
+  // 스낵바가 필요할까?
+  const setGuide = useSetRecoilState(guideState);
+  const handleKlip = () => {
+    setGuide({ message: "이거 되니?" });
+  };
+
   return (
     <Box
       sx={{
@@ -25,7 +35,14 @@ export default function Done() {
           mt: "5%",
         }}
       >
-        <img src={kilpLogo} width="200px" height="auto" alt="logo" />
+        <img
+          src={kilpLogo}
+          width="200px"
+          height="auto"
+          style={{ cursor: "pointer" }}
+          alt="logo"
+          onMouseEnter={handleKlip}
+        />
       </Box>
     </Box>
   );
