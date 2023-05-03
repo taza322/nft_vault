@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ClipboardJS from "clipboard";
 
 // MUI css
 import { Box, TextField, Button } from "@mui/material";
@@ -25,21 +24,6 @@ export default function Main() {
   const [securityCode, setSecurityCode] = useRecoilState(securityState);
   const [address, setAddress] = useRecoilState(addressState);
   const navigate = useNavigate();
-
-  // 클립보드 테스트
-  const handleClipboard = () => {
-    const clipboard = new ClipboardJS(".clipboard-button");
-
-    clipboard.on("success", (e) => {
-      console.log("클립보드에서 가져온 데이터:", e.text);
-      clipboard.destroy();
-    });
-
-    clipboard.on("error", (e) => {
-      console.error("클립보드 오류:", e.action);
-      clipboard.destroy();
-    });
-  };
 
   const handleCheckAddress = () => {
     setLoading({ isLoading: true });
@@ -139,7 +123,7 @@ export default function Main() {
                 autoFocus
                 margin="dense"
                 id="addressInput"
-                label="address"
+                label="Address: Klip에서 복사한 Address를 붙여넣기 해주세요."
                 variant="standard"
                 fullWidth
                 onChange={handleInput}
