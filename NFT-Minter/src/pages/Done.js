@@ -20,13 +20,16 @@ export default function Done() {
         mt: "10px",
       }}
     >
-      <Typography>NFT 민팅이 완료 되었습니다.</Typography>
-      <Typography>잠시 후 Klip에서 확인해주세요.</Typography>
+      <Typography sx={{ margin: "0 auto" }}>
+        NFT 민팅이 완료 되었습니다.
+      </Typography>
+      <Typography sx={{ margin: "0 auto" }}>
+        잠시 후 Klip에서 확인해주세요.
+      </Typography>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-          mt: "5%",
         }}
       >
         <img

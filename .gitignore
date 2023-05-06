@@ -1,6 +1,7 @@
 # NFT-Minter
 /NFT-Minter/node_modules
 /NFT-Minter/package-lock.json
+/NFT-Minter/yarn.lock
 /NFT-Minter/.env
 /NFT-Minter/src/utils/test.js
 
