@@ -24,7 +24,7 @@ export default function Done() {
         NFT 민팅이 완료 되었습니다.
       </Typography>
       <Typography sx={{ margin: "0 auto" }}>
-        아래 이미지를 통하여 Klip에서 확인해주세요.
+        아래 이미지를 눌러 Klip에서 확인해주세요.
       </Typography>
       <Box
         sx={{
