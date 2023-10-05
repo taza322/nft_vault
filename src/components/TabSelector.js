@@ -18,13 +18,8 @@ export default function TabSelector() {
     setTabValue({ tabSelect: newValue });
     console.log(newValue);
 
-    if (newValue === "Main") {
-      navigate("/");
-      resetSecurity();
-    } else {
-      navigate(`/${newValue}`);
-      resetSecurity();
-    }
+    navigate(`/${newValue}`);
+    resetSecurity();
   };
 
   return (
@@ -36,7 +31,6 @@ export default function TabSelector() {
         indicatorColor="secondary"
         aria-label="secondary tabs example"
       >
-        <Tab label="Main" value="Main" />
         <Tab label="Json" value="Json" />
         <Tab label="NFT" value="NFT" />
       </Tabs>

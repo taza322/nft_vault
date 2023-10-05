@@ -10,7 +10,7 @@ import { jsonToPinata } from "../APIs/pinataCall.js";
 // recoil
 import { useRecoilValue, useSetRecoilState, useResetRecoilState } from "recoil";
 import { nftMetaState } from "../recoil/nftMeta.js";
-import { addressState } from "../recoil/addressForMint.js";
+import { addressState } from "../recoil/account.js";
 import { loadingState } from "../recoil/loading.js";
 import { tabSelectState } from "../recoil/tabSelect.js";
 import { guideState } from "../recoil/guide.js";

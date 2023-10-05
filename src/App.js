@@ -17,18 +17,18 @@ import Snackbar from "./components/Snackbar.js";
 // recoil
 import { useRecoilValue } from "recoil";
 import { loadingState } from "./recoil/loading.js";
-import { successState } from "./recoil/success.js";
+import { addressState } from "./recoil/account.js";
 
 function App() {
   const isLoading = useRecoilValue(loadingState);
-  const isSuccess = useRecoilValue(successState);
+  const { address } = useRecoilValue(addressState);
 
   return (
     <SnackbarProvider maxSnack={3}>
       <BrowserRouter>
         <Header />
         {isLoading.isLoading ? <Loading /> : null}
-        {isSuccess.isSuccess ? null : <TabSelector />}
+        {address.length === 0 ? null : <TabSelector />}
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/Json" element={<JSON />} />

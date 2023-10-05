@@ -15,7 +15,7 @@ import { REACT_APP_RPC_URL } from "../utils/config.js";
 // recoil
 import { useResetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 import { nftMetaState } from "../recoil/nftMeta.js";
-import { addressState } from "../recoil/addressForMint.js";
+import { addressState } from "../recoil/account.js";
 import { loadingState } from "../recoil/loading.js";
 import { tabSelectState } from "../recoil/tabSelect.js";
 import { networkState } from "../recoil/network.js";
@@ -25,7 +25,7 @@ import { guideState } from "../recoil/guide.js";
 import { successState } from "../recoil/success.js";
 
 // Util
-import { isListening } from "../utils/caver";
+import { isListening, getBalance } from "../utils/caver";
 
 export default function Header() {
   // state reset
@@ -40,6 +40,7 @@ export default function Header() {
 
   const { address } = useRecoilValue(addressState);
   const [peer, setPeer] = useState(0);
+  const [balance, setBalance] = useState(0);
   const { enqueueSnackbar } = useSnackbar();
 
   const reset = () => {
@@ -88,10 +89,18 @@ export default function Header() {
     );
   };
 
+  const handleBalance = useCallback(async () => {
+    if (address.length > 0) {
+      const result = await getBalance(address);
+      setBalance(result);
+    }
+  }, [address]);
+
   useEffect(() => {
     handleNetwork();
     handleListening();
-  }, [handleNetwork]);
+    handleBalance();
+  }, [handleNetwork, handleBalance]);
 
   return (
     <Box
@@ -131,26 +140,43 @@ export default function Header() {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-
+                flexDirection: "column",
                 width: "100%",
               }}
             >
-              <Typography
-                variant="h10"
-                color="blue"
-                sx={{ cursor: "pointer" }}
-                onClick={handleAddress}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
               >
-                {address.slice(0, 6)}...
-                {address.slice(address.length - 5, address.length - 1)}
-              </Typography>
-              <CopyToClipboard text={address}>
-                <ContentCopyIcon
-                  fontSize="small"
-                  sx={{ ml: "7px", cursor: "pointer" }}
-                  onClick={handleCopy}
-                />
-              </CopyToClipboard>
+                <Typography
+                  variant="h10"
+                  color="blue"
+                  sx={{ cursor: "pointer" }}
+                  onClick={handleAddress}
+                >
+                  {address.slice(0, 6)}...
+                  {address.slice(address.length - 5, address.length - 1)}
+                </Typography>
+                <CopyToClipboard text={address}>
+                  <ContentCopyIcon
+                    fontSize="small"
+                    sx={{ ml: "7px", cursor: "pointer" }}
+                    onClick={handleCopy}
+                  />
+                </CopyToClipboard>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
+                <Typography variant="h10">{balance} KLAY</Typography>
+              </Box>
             </Box>
           )}
           <Box
@@ -172,9 +198,18 @@ export default function Header() {
                 >
                   <NetworkCheckIcon fontSize="small" color="success" />
                 </Box>
-                <Typography variant="h10">
-                  {whichNet.network} Baobab is healthy
-                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    mr: "3px",
+                  }}
+                >
+                  <Typography variant="h10">
+                    {whichNet.network} Baobab is healthy
+                  </Typography>
+                </Box>
               </>
             ) : (
               <>

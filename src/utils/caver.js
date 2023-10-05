@@ -4,6 +4,7 @@ import {
   REACT_APP_PRIVATE_KEY,
 } from "./config.js";
 import CryptoJS from "crypto-js";
+import { ethers } from "ethers";
 
 // abi
 import { MilalPOCCA, MilalPOCABI } from "../contract/getAbiData.js";
@@ -18,6 +19,51 @@ const MilalPOCContract = new caver.klay.Contract(MilalPOCABI, MilalPOCCA);
 // Address 확인
 export const checkAddress = (address) => {
   return caver.utils.isAddress(address);
+};
+
+// 비밀키로 주소 가져오기
+export const privateKeyToAccount = async (privateKey) => {
+  let result;
+
+  try {
+    result = await caver.klay.accounts.privateKeyToAccount(privateKey).address;
+  } catch (e) {
+    result = false;
+  }
+
+  return result;
+};
+
+// 영어 or 한글 체크
+const checkLanguage = (text) => {
+  const isEng = /^[a-zA-Z ]*$/;
+
+  if (isEng.test(text)) return "en";
+
+  return "ko";
+};
+
+// 니모닉으로 주소 가져오기
+export const MnemocinToAccount = async (mnemonic) => {
+  const word = checkLanguage(mnemonic);
+  let result;
+
+  try {
+    const walletMnemonic = ethers.Wallet.fromMnemonic(
+      mnemonic,
+      // undefined,
+      `m/44'/60'/0'/0/0`,
+      word
+    );
+    result = {
+      address: walletMnemonic.address,
+      privateKey: walletMnemonic.privateKey,
+    };
+  } catch (e) {
+    result = false;
+  }
+
+  return result;
 };
 
 // NFT Minting
@@ -80,7 +126,38 @@ export const test = async () => {
   await caver.klay.getGasPrice().then(console.log());
 };
 
+// 네트워크 상태
 export const isListening = async () => {
   const peerCount = await caver.rpc.net.getPeerCount();
   return await caver.utils.hexToNumber(peerCount);
+};
+
+// 잔액 조회
+export const getBalance = async (address) => {
+  const balance = await caver.rpc.klay
+    .getBalance(address)
+    .then(async (data) => {
+      const peb = await caver.utils.hexToNumberString(data);
+      return caver.utils.convertFromPeb(Number(peb));
+    });
+  let floorBalance;
+  let decimal;
+  let sliceIndex = 0;
+  const arrayBalance = balance.split("");
+
+  for (let i = 0; i < arrayBalance.length; i++) {
+    if (arrayBalance[i] === ".") {
+      sliceIndex = i;
+      break;
+    }
+  }
+
+  decimal = balance.slice(sliceIndex + 1);
+
+  if (decimal.length > 4) {
+    floorBalance = Number(balance).toFixed(4);
+    return floorBalance;
+  }
+  console.log(balance);
+  return balance;
 };
