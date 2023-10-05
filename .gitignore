@@ -1,11 +1,7 @@
-# NFT-Minter
-/NFT-Minter/node_modules
-/NFT-Minter/package-lock.json
-/NFT-Minter/yarn.lock
-/NFT-Minter/.env
-/NFT-Minter/src/utils/test.js
 
-# Contract
-/Contract/node_modules
-/Contract/package-lock.json
-/Contract/.env
+node_modules/
+package-lock.json
+yarn.lock
+.env
+src/utils/test.js
+build/
