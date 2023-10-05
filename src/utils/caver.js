@@ -79,3 +79,8 @@ export const sendSignTx = async (signTx) =>
 export const test = async () => {
   await caver.klay.getGasPrice().then(console.log());
 };
+
+export const isListening = async () => {
+  const peerCount = await caver.rpc.net.getPeerCount();
+  return await caver.utils.hexToNumber(peerCount);
+};
