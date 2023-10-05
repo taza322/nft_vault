@@ -1,8 +1,11 @@
 import React, { useEffect, useCallback, useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useSnackbar } from "notistack";
 
 // MUI css
 import { Box, Typography } from "@mui/material";
-import CircleIcon from "@mui/icons-material/Circle";
+import NetworkCheckIcon from "@mui/icons-material/NetworkCheck";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 // Images
 import headerMMG from "../img/codestates_Logo.png";
@@ -37,6 +40,7 @@ export default function Header() {
 
   const { address } = useRecoilValue(addressState);
   const [peer, setPeer] = useState(0);
+  const { enqueueSnackbar } = useSnackbar();
 
   const reset = () => {
     resetNftMeta();
@@ -74,43 +78,86 @@ export default function Header() {
     setPeer(result);
   };
 
+  const handleCopy = () => {
+    enqueueSnackbar("주소를 복사합니다.");
+  };
+
+  const handleAddress = () => {
+    window.open(
+      `https://baobab.klaytnscope.com/account/${address}?tabId=txList`
+    );
+  };
+
   useEffect(() => {
     handleNetwork();
     handleListening();
   }, [handleNetwork]);
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", m: "1%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        m: "1%",
+        width: "100%",
+      }}
+    >
       <Box
-        onClick={reset}
-        sx={{ display: "flex", flexDirection: "column", cursor: "pointer" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+        }}
       >
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box
+          onClick={reset}
+          sx={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
+        >
           <img src={headerMMG} width="auto" height="40px" alt="logo" />
           <Typography variant="h4" ml="10px">
             My NFT Vault
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            mt: "15px",
+            width: "100%",
+          }}
+        >
           {address.length === 0 ? null : (
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
                 justifyContent: "center",
-                mr: "3px",
+
+                width: "100%",
               }}
             >
-              <Typography variant="h10">
+              <Typography
+                variant="h10"
+                color="blue"
+                sx={{ cursor: "pointer" }}
+                onClick={handleAddress}
+              >
                 {address.slice(0, 6)}...
                 {address.slice(address.length - 5, address.length - 1)}
               </Typography>
+              <CopyToClipboard text={address}>
+                <ContentCopyIcon
+                  fontSize="small"
+                  sx={{ ml: "7px", cursor: "pointer" }}
+                  onClick={handleCopy}
+                />
+              </CopyToClipboard>
             </Box>
           )}
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
+              width: "100%",
             }}
           >
             {peer > 0 ? (
@@ -123,9 +170,11 @@ export default function Header() {
                     mr: "3px",
                   }}
                 >
-                  <CircleIcon fontSize="small" color="success" />
+                  <NetworkCheckIcon fontSize="small" color="success" />
                 </Box>
-                <Typography variant="h10">{whichNet.network}</Typography>
+                <Typography variant="h10">
+                  {whichNet.network} Baobab is healthy
+                </Typography>
               </>
             ) : (
               <>
@@ -137,7 +186,7 @@ export default function Header() {
                     mr: "3px",
                   }}
                 >
-                  <CircleIcon fontSize="small" color="disabled" />
+                  <NetworkCheckIcon fontSize="small" color="disabled" />
                 </Box>
                 <Typography variant="h10">네트워크가 불안정합니다.</Typography>
               </>
