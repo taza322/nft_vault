@@ -16,9 +16,7 @@ export default function Snackbar() {
 
   const showSnackbar = useCallback(
     (message) => {
-      if (message === "Json") {
-        enqueueSnackbar("NFT를 만들 이미지 또는 사진을 넣어주세요.");
-      } else if (message === "NFT") {
+      if (message === "NFT") {
         enqueueSnackbar("민팅할 NFT의 정보를 써주세요.");
       }
     },

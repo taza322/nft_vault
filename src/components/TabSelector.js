@@ -31,8 +31,8 @@ export default function TabSelector() {
         indicatorColor="secondary"
         aria-label="secondary tabs example"
       >
-        <Tab label="Json" value="Json" />
         <Tab label="NFT" value="NFT" />
+        <Tab label="Mint" value="Mint" />
       </Tabs>
     </Box>
   );

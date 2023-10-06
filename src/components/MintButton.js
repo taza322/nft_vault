@@ -12,13 +12,9 @@ import { useRecoilValue, useSetRecoilState, useResetRecoilState } from "recoil";
 import { nftMetaState } from "../recoil/nftMeta.js";
 import { addressState } from "../recoil/account.js";
 import { loadingState } from "../recoil/loading.js";
-import { tabSelectState } from "../recoil/tabSelect.js";
 import { guideState } from "../recoil/guide.js";
 import { successState } from "../recoil/success.js";
 
-// contract Mint
-// web3
-// import { minting, sendSignTx } from "../utils/web3.js";
 // caver
 import { minting, sendSignTx } from "../utils/caver.js";
 
@@ -32,16 +28,11 @@ export default function MintButton() {
 
   // state reset
   const resetNftMeta = useResetRecoilState(nftMetaState);
-  const resetAddress = useResetRecoilState(addressState);
-  const resetTabSelect = useResetRecoilState(tabSelectState);
   const resetGuide = useResetRecoilState(guideState);
 
   const reset = () => {
     resetNftMeta();
-    resetAddress();
-    resetTabSelect();
     resetGuide();
-    window.location.replace("/");
   };
 
   const handleMinting = async () => {

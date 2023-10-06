@@ -19,7 +19,6 @@ import { addressState } from "../recoil/account.js";
 import { loadingState } from "../recoil/loading.js";
 import { tabSelectState } from "../recoil/tabSelect.js";
 import { networkState } from "../recoil/network.js";
-import { attributesState } from "../recoil/attributes.js";
 import { securityState } from "../recoil/security.js";
 import { guideState } from "../recoil/guide.js";
 import { successState } from "../recoil/success.js";
@@ -33,7 +32,6 @@ export default function Header() {
   const resetAddress = useResetRecoilState(addressState);
   const resetTabSelect = useResetRecoilState(tabSelectState);
   const resetLoading = useResetRecoilState(loadingState);
-  const resetAttributes = useResetRecoilState(attributesState);
   const resetSecurity = useResetRecoilState(securityState);
   const resetGuide = useResetRecoilState(guideState);
   const resetSuccess = useResetRecoilState(successState);
@@ -48,7 +46,6 @@ export default function Header() {
     resetAddress();
     resetTabSelect();
     resetLoading();
-    resetAttributes();
     resetSecurity();
     resetGuide();
     resetSuccess();

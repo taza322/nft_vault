@@ -37,7 +37,7 @@ export default function Main() {
           privateKey: addressByMnemonic.address,
         });
       }
-      navigate("/Json");
+      navigate("/Mint");
       setIsErr(false);
       setLoading({ isLoading: false });
     } else {
