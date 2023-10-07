@@ -196,7 +196,7 @@ export default function NFTs() {
                       </Box>
                       <Box sx={{ mt: "10px", display: "flex" }}>
                         <Typography fontSize="small">
-                          Date of ownership :{" "}
+                          Last Updated :{" "}
                         </Typography>
                         <Typography fontSize="small" sx={{ ml: "4px" }}>
                           {nft.createdAt}

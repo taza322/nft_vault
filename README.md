@@ -8,7 +8,7 @@
 
 ### `npm run start`
 
-### caver 호환성 문제
+### (Optional) caver 호환성 문제
 
 ```js
 module.exports = {
