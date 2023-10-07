@@ -14,6 +14,7 @@ import { addressState } from "../recoil/account.js";
 import { loadingState } from "../recoil/loading.js";
 import { guideState } from "../recoil/guide.js";
 import { successState } from "../recoil/success.js";
+import { fileNumState } from "../recoil/files.js";
 
 // caver
 import { minting, sendSignTx } from "../utils/caver.js";
@@ -29,10 +30,15 @@ export default function MintButton() {
   // state reset
   const resetNftMeta = useResetRecoilState(nftMetaState);
   const resetGuide = useResetRecoilState(guideState);
+  const resetFileState = useResetRecoilState(fileNumState);
 
   const reset = () => {
     resetNftMeta();
     resetGuide();
+  };
+
+  const successReset = () => {
+    resetFileState();
   };
 
   const handleMinting = async () => {
@@ -55,7 +61,8 @@ export default function MintButton() {
           message: "전송이 완료되었습니다. Klip에서 확인해주세요.",
         });
         setSuccess({ isSuccess: true });
-        navigate("/done");
+        navigate("/NFT");
+        successReset();
         isLoading({ isLoading: false });
       } else {
         isLoading({ isLoading: false });

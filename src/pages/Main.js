@@ -37,7 +37,7 @@ export default function Main() {
           privateKey: addressByMnemonic.address,
         });
       }
-      navigate("/Mint");
+      navigate("/NFT");
       setIsErr(false);
       setLoading({ isLoading: false });
     } else {

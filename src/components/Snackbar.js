@@ -10,18 +10,12 @@ import { tabSelectState } from "../recoil/tabSelect.js";
 import { guideState } from "../recoil/guide.js";
 
 export default function Snackbar() {
+  // eslint-disable-next-line
   const { enqueueSnackbar } = useSnackbar();
   const tabSelect = useRecoilValue(tabSelectState);
   const guide = useRecoilValue(guideState);
 
-  const showSnackbar = useCallback(
-    (message) => {
-      if (message === "NFT") {
-        enqueueSnackbar("민팅할 NFT의 정보를 써주세요.");
-      }
-    },
-    [enqueueSnackbar]
-  );
+  const showSnackbar = useCallback((message) => {}, []);
 
   useEffect(() => {
     showSnackbar(tabSelect.tabSelect);

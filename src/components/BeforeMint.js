@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 // MUI css
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  TextField,
-  FormControl,
-  Input,
-  FormHelperText,
-} from "@mui/material";
+import { Box, Card, CardContent, Typography, TextField } from "@mui/material";
 
 // recoil
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { fileNumState } from "../recoil/files.js";
 import { nftMetaState } from "../recoil/nftMeta.js";
 

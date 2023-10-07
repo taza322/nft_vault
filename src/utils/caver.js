@@ -7,14 +7,14 @@ import CryptoJS from "crypto-js";
 import { ethers } from "ethers";
 
 // abi
-import { MilalPOCCA, MilalPOCABI } from "../contract/getAbiData.js";
+import { AttendCA, AttendABI } from "../contract/getAbiData.js";
 
 // caver
 import Caver from "caver-js";
 const caver = new Caver(REACT_APP_RPC_URL);
 
 // contract
-const MilalPOCContract = new caver.klay.Contract(MilalPOCABI, MilalPOCCA);
+const AttendContract = new caver.klay.Contract(AttendABI, AttendCA);
 
 // Address 확인
 export const checkAddress = (address) => {
@@ -68,16 +68,16 @@ export const MnemocinToAccount = async (mnemonic) => {
 
 // NFT Minting
 export const minting = async (tokenURI, to) => {
-  const mint = MilalPOCContract.methods.mintNFT(to, tokenURI).encodeABI();
+  const mint = AttendContract.methods.mintNFT(to, tokenURI).encodeABI();
 
-  const estimate = await MilalPOCContract.methods
+  const estimate = await AttendContract.methods
     .mintNFT(to, tokenURI)
     .estimateGas({
       from: REACT_APP_ADDRESS,
     });
 
   console.log("예상 실행 가스비 견적 : ", estimate);
-  const result = await SendTransactionNoValue(mint, MilalPOCCA, estimate);
+  const result = await SendTransactionNoValue(mint, AttendCA, estimate);
   console.log("트랜잭션 해시 : ", result.hash);
   return result;
 };
@@ -160,4 +160,9 @@ export const getBalance = async (address) => {
   }
   console.log(balance);
   return balance;
+};
+
+// Hex to Num
+export const hexToNum = async (hex) => {
+  return await caver.utils.hexToNumber(hex);
 };

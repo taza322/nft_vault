@@ -16,7 +16,6 @@ export default function TabSelector() {
 
   const handleTab = (event, newValue) => {
     setTabValue({ tabSelect: newValue });
-    console.log(newValue);
 
     navigate(`/${newValue}`);
     resetSecurity();

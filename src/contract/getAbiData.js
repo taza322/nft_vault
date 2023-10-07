@@ -1,5 +1,5 @@
-import ABI from "./Milal.json";
+import ABI from "./CodestatesAttend.json";
 
-export const MilalPOCCA = ABI.address;
+export const AttendCA = ABI.address;
 
-export const MilalPOCABI = ABI.abi;
+export const AttendABI = ABI.abi;
