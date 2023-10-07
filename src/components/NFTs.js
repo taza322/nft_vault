@@ -74,13 +74,10 @@ export default function NFTs() {
                     variant="h10"
                     color="blue"
                     sx={{ cursor: "pointer", ml: "4px" }}
-                    onClick={() => handleAddress(nft.owner)}
+                    onClick={() => handleAddress(address)}
                   >
-                    {nft.owner.slice(0, 6)}...
-                    {nft.owner.slice(
-                      nft.owner.length - 5,
-                      nft.owner.length - 1
-                    )}
+                    {address.slice(0, 6)}...
+                    {address.slice(address.length - 5, address.length - 1)}
                   </Typography>
                 </Box>
                 <Box
@@ -198,7 +195,9 @@ export default function NFTs() {
                         </Typography>
                       </Box>
                       <Box sx={{ mt: "10px", display: "flex" }}>
-                        <Typography fontSize="small">CreatedAt : </Typography>
+                        <Typography fontSize="small">
+                          Date of ownership :{" "}
+                        </Typography>
                         <Typography fontSize="small" sx={{ ml: "4px" }}>
                           {nft.createdAt}
                         </Typography>

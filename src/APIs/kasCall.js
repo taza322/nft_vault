@@ -9,10 +9,10 @@ import { hexToNum } from "../utils/caver.js";
 
 axios.defaults.withCredentials = true;
 
-// EOA and CA로 NFTs 가져오기
-export const getNftsByAddress = async (address, ca) => {
+// EOA로 NFTs 가져오기
+export const getNftsByAddress = async (address) => {
+  const result = [];
   try {
-    const contractAddr = ca || "0x0dbac47c91acacb50687016cccc950097714c869";
     const options = {
       auth: {
         username: REACT_APP_KAS_ACCESS_KEY,
@@ -23,35 +23,46 @@ export const getNftsByAddress = async (address, ca) => {
         "x-chain-id": "1001",
       },
     };
-    const url = `https://th-api.klaytnapi.com/v2/contract/nft/${contractAddr}/owner/${address}`;
+    const url = `https://th-api.klaytnapi.com/v2/account/${address}/token`;
     const nftsByKas = await axios.get(url, options).then((res) => {
       return res.data.items;
     });
 
     for (let i = 0; i < nftsByKas.length; i++) {
-      nftsByKas[i].contractAddress = contractAddr;
-      nftsByKas[i].tokenId = await hexToNum(nftsByKas[i].tokenId);
-      nftsByKas[i].createdAt = timeStamp(nftsByKas[i].createdAt);
-      nftsByKas[i].chain = "Klaytn Baobab";
-      const metaData = await getMetadata(nftsByKas[i].tokenUri);
-      nftsByKas[i].name = metaData.name;
-      nftsByKas[i].description = metaData.description;
-      if (metaData.image.slice(0, 4) === "ipfs") {
-        const ipfsHash = metaData.image.slice(7);
-        const checkUri = `https://gateway.pinata.cloud/ipfs/${ipfsHash}`;
-        nftsByKas[i].image = checkUri;
+      if (nftsByKas[i].kind !== "nft") {
+        continue;
       } else {
-        nftsByKas[i].image = metaData.image;
-      }
-      if (metaData.attributes) {
-        nftsByKas[i].attributes = metaData.attributes;
+        const nftInfo = {};
+
+        nftInfo.contractAddress = nftsByKas[i].contractAddress;
+        nftInfo.tokenId = await hexToNum(nftsByKas[i].extras.tokenId);
+        nftInfo.createdAt = timeStamp(nftsByKas[i].updatedAt);
+        nftInfo.chain = "Klaytn Baobab";
+        nftInfo.transactionHash = nftsByKas[i].lastTransfer.transactionHash;
+
+        const metaData = await getMetadata(nftsByKas[i].extras.tokenUri);
+        nftInfo.name = metaData.name;
+        nftInfo.description = metaData.description;
+
+        if (metaData.image.slice(0, 4) === "ipfs") {
+          const ipfsHash = metaData.image.slice(7);
+          const checkUri = `https://gateway.pinata.cloud/ipfs/${ipfsHash}`;
+          nftInfo.image = checkUri;
+        } else {
+          nftInfo.image = metaData.image;
+        }
+
+        if (metaData.attributes) {
+          nftInfo.attributes = metaData.attributes;
+        }
+
+        result.push(nftInfo);
       }
     }
-
-    return nftsByKas;
+    return result;
   } catch (e) {
     console.log(e);
-    return [];
+    return result;
   }
 };
 
