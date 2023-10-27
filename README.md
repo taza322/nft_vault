@@ -6,9 +6,15 @@
 
 ### (자신의 컨트랙트를 사용하려면) `/contract/CodestatesAttend.json` 파일을 `자신의 컨트랙트 ABI파일`로 변경해주세요.
 
+<br />
+
 ## 클라이언트 실행
 
 ### `$ yarn start`
+
+<br />
+
+## 옵셔널 세팅
 
 ### `shift + command + x` 눌러서 `eslint extension` 설치 (optional)
 
