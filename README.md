@@ -1,12 +1,16 @@
 ## 프로젝트 세팅
 
-### `npm i`
+### `$ yarn`
 
-### `shift + command + x` 눌러서 `eslint extension` 설치 (optional)
+### `.env.example`에 `EOA, Pinata, KAS` API keys를 기입(`.example 삭제`)
+
+### (자신의 컨트랙트를 사용하려면) `/contract/CodestatesAttend.json` 파일을 `자신의 컨트랙트 ABI파일`로 변경해주세요.
 
 ## 클라이언트 실행
 
-### `npm run start`
+### `$ yarn start`
+
+### `shift + command + x` 눌러서 `eslint extension` 설치 (optional)
 
 ### (Optional) caver 호환성 문제
 
